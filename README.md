@@ -4,3 +4,4 @@
 - Virtual host config
 - Load Balancer
 - Static configurations
+- Routing
