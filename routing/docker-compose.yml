@@ -1,0 +1,19 @@
+version: "3"
+
+services: 
+  proxy:
+    image: traefik:v2.1
+    ports:
+      - "80:80"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/traefik.yml
+  nginx:
+    image: nginx
+    labels: 
+      - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`)" # Required added the host on host file
+  app:
+    image: app
+    container_name: app
+    labels: 
+      - "traefik.http.routers.app.rule=Host(`apache.app.test`)" # Required added the host on host file
