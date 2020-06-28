@@ -1,0 +1,13 @@
+FROM php:7.4
+
+ENV PORT=8080
+ENV PORT_TWO=8081
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE ${PORT}
+EXPOSE ${PORT_TWO}
+
+ENTRYPOINT ["sh","docker-entrypoint.sh"]
