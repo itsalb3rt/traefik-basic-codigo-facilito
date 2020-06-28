@@ -5,3 +5,4 @@
 - Load Balancer
 - Static configurations
 - Routing
+- Rules
