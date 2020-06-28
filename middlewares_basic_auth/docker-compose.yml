@@ -1,0 +1,18 @@
+version: "3"
+
+services: 
+  proxy:
+    image: traefik:v2.1
+    ports:
+      - "80:80"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/traefik.yml
+  app:
+    image: app:v2
+    container_name: app_basic_auth
+    labels: 
+      - "traefik.http.routers.app.rule=Host(`apache.app.test`)" # Required added the host on host file
+      - "traefik.http.services.app.loadbalancer.server.port=8081"
+      - "traefik.http.middlewares.test-auth.basicauth.users=admin:$$apr1$$ZAhx0FA1$$G8.pUHAJA2ImgGRejJS2d/"
+      - "traefik.http.routers.app.middlewares=test-auth"
