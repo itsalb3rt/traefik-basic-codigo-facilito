@@ -9,3 +9,4 @@
 - Middlewares
 - Globals Middlewares
 - Reverse proxy by path
+- HTTPS
