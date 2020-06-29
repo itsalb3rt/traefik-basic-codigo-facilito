@@ -1,0 +1,8 @@
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+
+log:
+  filePath: "/traefik.log"
+  level: DEBUG
+  format: json

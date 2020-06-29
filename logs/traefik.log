@@ -1,0 +1,38 @@
+{"level":"info","msg":"Traefik version 2.1.9 built on 2020-03-23T17:23:17Z","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"Static configuration loaded {\"global\":{\"checkNewVersion\":true},\"serversTransport\":{\"maxIdleConnsPerHost\":200},\"entryPoints\":{\"http\":{\"address\":\":80\",\"transport\":{\"lifeCycle\":{\"graceTimeOut\":10000000000},\"respondingTimeouts\":{\"idleTimeout\":180000000000}},\"forwardedHeaders\":{}}},\"providers\":{\"providersThrottleDuration\":2000000000,\"docker\":{\"watch\":true,\"endpoint\":\"unix:///var/run/docker.sock\",\"defaultRule\":\"Host(`{{ normalize .Name }}`)\",\"exposedByDefault\":true,\"swarmModeRefreshSeconds\":15000000000}},\"log\":{\"level\":\"DEBUG\",\"filePath\":\"/traefik.log\",\"format\":\"json\"}}","time":"2020-06-29T22:54:21Z"}
+{"level":"info","msg":"\nStats collection is disabled.\nHelp us improve Traefik by turning this feature on :)\nMore details on: https://docs.traefik.io/contributing/data-collection/\n","time":"2020-06-29T22:54:21Z"}
+{"level":"info","msg":"Starting provider aggregator.ProviderAggregator {}","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Start TCP Server","time":"2020-06-29T22:54:21Z"}
+{"level":"info","msg":"Starting provider *traefik.Provider {}","time":"2020-06-29T22:54:21Z"}
+{"level":"info","msg":"Starting provider *docker.Provider {\"watch\":true,\"endpoint\":\"unix:///var/run/docker.sock\",\"defaultRule\":\"Host(`{{ normalize .Name }}`)\",\"exposedByDefault\":true,\"swarmModeRefreshSeconds\":15000000000}","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"Configuration received from provider internal: {\"http\":{},\"tcp\":{},\"tls\":{}}","providerName":"internal","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"No default certificate, generating one","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"Provider connection established with docker 19.03.8 (API 1.40)","providerName":"docker","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"Configuration received from provider docker: {\"http\":{\"routers\":{\"nginx\":{\"middlewares\":[\"test-stripprefix\"],\"service\":\"nginx-logs\",\"rule\":\"Host(`nginx.app.test`) \\u0026\\u0026 path(`/traefik`)\"},\"portainer\":{\"service\":\"portainer\",\"rule\":\"Host(`portainer`)\"},\"proxy-logs\":{\"service\":\"proxy-logs\",\"rule\":\"Host(`proxy-logs`)\"}},\"middlewares\":{\"test-stripprefix\":{\"stripPrefix\":{\"prefixes\":[\"/traefik\"],\"forceSlash\":true}}},\"services\":{\"nginx-logs\":{\"loadBalancer\":{\"servers\":[{\"url\":\"http://172.26.0.2:80\"}],\"passHostHeader\":true}},\"portainer\":{\"loadBalancer\":{\"servers\":[{\"url\":\"http://172.17.0.2:8000\"}],\"passHostHeader\":true}},\"proxy-logs\":{\"loadBalancer\":{\"servers\":[{\"url\":\"http://172.26.0.3:80\"}],\"passHostHeader\":true}}}},\"tcp\":{}}","providerName":"docker","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"No entryPoint defined for this router, using the default one(s) instead: [http]","routerName":"proxy-logs@docker","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"No entryPoint defined for this router, using the default one(s) instead: [http]","routerName":"nginx@docker","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"No entryPoint defined for this router, using the default one(s) instead: [http]","routerName":"portainer@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"pipelining","middlewareType":"Pipelining","msg":"Creating middleware","routerName":"portainer@docker","serviceName":"portainer","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating load-balancer","routerName":"portainer@docker","serviceName":"portainer","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating server 0 http://172.17.0.2:8000","routerName":"portainer@docker","serverName":0,"serviceName":"portainer","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"tracing","middlewareType":"TracingForwarder","msg":"Added outgoing tracing middleware portainer","routerName":"portainer@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"pipelining","middlewareType":"Pipelining","msg":"Creating middleware","routerName":"proxy-logs@docker","serviceName":"proxy-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating load-balancer","routerName":"proxy-logs@docker","serviceName":"proxy-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating server 0 http://172.26.0.3:80","routerName":"proxy-logs@docker","serverName":0,"serviceName":"proxy-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"tracing","middlewareType":"TracingForwarder","msg":"Added outgoing tracing middleware proxy-logs","routerName":"proxy-logs@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"pipelining","middlewareType":"Pipelining","msg":"Creating middleware","routerName":"nginx@docker","serviceName":"nginx-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating load-balancer","routerName":"nginx@docker","serviceName":"nginx-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","msg":"Creating server 0 http://172.26.0.2:80","routerName":"nginx@docker","serverName":0,"serviceName":"nginx-logs","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"tracing","middlewareType":"TracingForwarder","msg":"Added outgoing tracing middleware nginx-logs","routerName":"nginx@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"test-stripprefix@docker","middlewareType":"StripPrefix","msg":"Creating middleware","routerName":"nginx@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"test-stripprefix@docker","msg":"Adding tracing to middleware","routerName":"nginx@docker","time":"2020-06-29T22:54:21Z"}
+{"entryPointName":"http","level":"debug","middlewareName":"traefik-internal-recovery","middlewareType":"Recovery","msg":"Creating middleware","time":"2020-06-29T22:54:21Z"}
+{"level":"debug","msg":"No default certificate, generating one","time":"2020-06-29T22:54:21Z"}
+{"level":"info","msg":"I have to go...","time":"2020-06-29T22:54:23Z"}
+{"level":"info","msg":"Stopping server gracefully","time":"2020-06-29T22:54:23Z"}
+{"entryPointName":"http","level":"debug","msg":"Waiting 10s seconds before killing connections.","time":"2020-06-29T22:54:23Z"}
+{"entryPointName":"http","level":"error","msg":"close tcp [::]:80: use of closed network connection","time":"2020-06-29T22:54:23Z"}
+{"entryPointName":"http","level":"debug","msg":"Entry point http closed","time":"2020-06-29T22:54:23Z"}
+{"level":"info","msg":"Server stopped","time":"2020-06-29T22:54:23Z"}
+{"level":"info","msg":"Shutting down","time":"2020-06-29T22:54:23Z"}
+{"entryPointName":"http","level":"error","msg":"accept tcp [::]:80: use of closed network connection","time":"2020-06-29T22:54:23Z"}
