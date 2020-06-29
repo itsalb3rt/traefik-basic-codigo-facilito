@@ -6,3 +6,6 @@
 - Static configurations
 - Routing
 - Rules
+- Middlewares
+- Globals Middlewares
+- Reverse proxy by path
