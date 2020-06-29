@@ -1,0 +1,17 @@
+entrypoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+
+certificatesResolvers:
+    myresolver:
+      acme:
+        email: alhidalgo@gmail.com
+        storage: /acme.json
+        httpChallenge:
+          entrypoint: web

@@ -1,0 +1,30 @@
+version: "3"
+
+services: 
+  proxy:
+    image: traefik:v2.1
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/traefik.yml
+      - ./acme.json:/acme.json
+      
+  nginx:
+    image: nginx
+    labels: 
+      - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`) && path(`/nginx`)" # Required added the host on host file
+      - "traefik.http.middlewares.nginx-stripprefix.stripprefix.prefixes=/nginx" # Path to removed
+      - "traefik.http.routers.nginx.middlewares=nginx-stripprefix" # Used declared middleware
+      - "traefik.http.routers.nginx.entrypoints=websecure" # entry point in traefik.yml
+      - "traefik.http.routers.nginx.tls.certresolver=myresolver" # defined in traefik.yml
+  apache:
+    image: httpd
+    container_name: apache_httpd
+    labels: 
+      - "traefik.http.routers.apache.rule=Host(`apache.app.test`) && path(`/apache`)" 
+      - "traefik.http.middlewares.apache-stripprefix.stripprefix.prefixes=/apache"
+      - "traefik.http.routers.apache.middlewares=apache-stripprefix"
+      - "traefik.http.routers.apache.entrypoints=websecure" # entry point in traefik.yml
+      - "traefik.http.routers.apache.tls.certresolver=myresolver" # defined in traefik.yml
