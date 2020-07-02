@@ -1,8 +1,6 @@
 # Traefik and Docker course from Codido Facilito
 
 - Introduction
-- Virtual host config
-- Load Balancer
 - Static configurations
 - Routing
 - Rules
